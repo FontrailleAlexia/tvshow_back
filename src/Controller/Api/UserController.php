@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
+use \Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class UserController extends AbstractController
 {
@@ -29,6 +29,7 @@ class UserController extends AbstractController
         
         // If there is at least one error, we return a 400
         if (count($errors) > 0) {
+            
             $errorsList = [];
             foreach ($errors as $erreur) {
                 $input = $erreur->getPropertyPath();
@@ -69,7 +70,6 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $users = $userRepository->findByUserField($user);
        
-
         return $this->json($users, 200, [], ['groups' => 'user_read']);
     }
     */
