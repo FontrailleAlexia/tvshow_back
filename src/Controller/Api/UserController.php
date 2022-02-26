@@ -60,6 +60,19 @@ class UserController extends AbstractController
                 'user' => $user
             ], Response::HTTP_CREATED);
     }
+
+    /**
+     * @Route("/api/login", name="api_login")
+     */
+
+    /*public function login() {
+        $user = $this->getUser();
+
+        return $this->json([
+            'username' => $user->getUserIdentifier(),
+            'roles' => $user->getRoles(),
+        ]);
+    }
     
     /**
      * @Route("/api/users", name="api_users", methods="GET")
