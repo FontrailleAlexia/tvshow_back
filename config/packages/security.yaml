@@ -1,4 +1,5 @@
 security:
+  enable_authenticator_manager: true
   encoders:
     # plaintext = en clair / auto = prend le meilleur disponible sur le système
     # en 2021 soit bcrypt soit argon2
@@ -11,7 +12,7 @@ security:
     app_user_provider:
       entity:
         class: App\Entity\User
-        property: mail
+        property: email
     # used to reload user from session & other features (e.g. switch_user)
   firewalls:
     dev:
@@ -20,23 +21,17 @@ security:
     login:
       pattern: ^/api/login
       stateless: true
-      anonymous: true
       json_login:
         check_path: /api/login
         success_handler: lexik_jwt_authentication.handler.authentication_success
         failure_handler: lexik_jwt_authentication.handler.authentication_failure
     # Authentification JWT pour les routes de l'API
-    api_anonymous:
-      pattern: ^/api/register
-      anonymous: true
+
     api:
       pattern: ^/api
       stateless: true
-      guard:
-        authenticators:
-          - lexik_jwt_authentication.jwt_token_authenticator
+      jwt: ~      
     main:
-      anonymous: true
       lazy: true
       provider: app_user_provider
 
