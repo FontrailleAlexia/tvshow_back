@@ -64,7 +64,7 @@ class UserController extends AbstractController
     /**
      * @Route("/api/users", name="api_users", methods="GET")
      */
-    /*
+    
     public function user(UserRepository $userRepository): Response
     {
         $user = $this->getUser();
@@ -72,5 +72,5 @@ class UserController extends AbstractController
        
         return $this->json($users, 200, [], ['groups' => 'user_read']);
     }
-    */
+    
 }

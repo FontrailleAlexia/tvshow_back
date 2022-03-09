@@ -24,6 +24,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         parent::__construct($registry, User::class);
     }
 
+    public function findByUserField($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id = :val')
+            ->setParameter('val', $value)
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(30)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /**
      * @throws ORMException
      * @throws OptimisticLockException

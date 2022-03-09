@@ -25,6 +25,7 @@ security:
         check_path: /api/login
         success_handler: lexik_jwt_authentication.handler.authentication_success
         failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        username_path: email
     # Authentification JWT pour les routes de l'API
 
     api:
